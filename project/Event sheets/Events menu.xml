@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Events menu</name>
+    <events>
+        <variable constant="0" name="levelOK" sid="301416951694419" static="0" type="number">1</variable>
+        <variable constant="0" name="First" sid="453692014683441" static="0" type="number">0</variable>
+        <variable constant="0" name="levelMAX" sid="314773841657465" static="0" type="number">5</variable>
+        <variable constant="0" name="Playing" sid="561342719189937" static="0" type="number">1</variable>
+        <variable constant="0" name="PlayerSel" sid="722953798849369" static="0" type="number">1</variable>
+        <event-block sid="382897301706320">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="987425028276505" type="System" />
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="370558930949516" type="System">
+                    <param id="0" name="Time scale">1.0</param>
+                </action>
+                <action id="0" name="Set text" sid="609876495042153" type="FontFases">
+                    <param id="0" name="Text">Playing</param>
+                </action>
+                <action id="33" name="Stop all" sid="715098195760181" type="Audio" />
+                <action id="0" name="Play" sid="976678743520017" type="Audio">
+                    <param id="0" name="Audio file">FutureSynth2</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">-25</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="4" name="Set animation" sid="546589565381554" type="PlayerSprites">
+                    <param id="0" name="Animation">&quot;walk&quot; &amp; PlayerSel</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="895466423005548" type="Locked" />
+                <action id="-3" name="Create object" sid="989947627451792" type="System">
+                    <param id="0" name="Object to create">Locked</param>
+                    <param id="1" name="Layer">&quot;Textos&quot;</param>
+                    <param id="2" name="X">398</param>
+                    <param id="3" name="Y">128</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>if First=0, go to LocalStorage and get the save state</comment>
+                <event-block sid="666067288498905">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="421040572814222" type="System">
+                            <param id="0" name="Variable">First</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Check item exists" sid="535669674455599" type="LocalStorage">
+                            <param id="0" name="Key">&quot;levelOKabstractPlatformer_key&quot;</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="187158908631257" type="System">
+                            <param id="0" name="Variable">First</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="480845496948661">
+            <conditions>
+                <condition id="9" name="On item exists" sid="844224565763930" type="LocalStorage">
+                    <param id="0" name="Key">&quot;levelOKabstractPlatformer_key&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Get item" sid="982133766443832" type="LocalStorage">
+                    <param id="0" name="Key">&quot;levelOKabstractPlatformer_key&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="698713214034858">
+            <conditions>
+                <condition id="1" name="On item get" sid="281290028127434" type="LocalStorage">
+                    <param id="0" name="Key">&quot;levelOKabstractPlatformer_key&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="278088857574408" type="System">
+                    <param id="0" name="Variable">levelOK</param>
+                    <param id="1" name="Value">LocalStorage.ItemValue</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="750867011672680">
+            <conditions>
+                <condition id="10" name="On item missing" sid="743266735431649" type="LocalStorage">
+                    <param id="0" name="Key">&quot;levelOKabstractPlatformer_key&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set item" sid="138265408931943" type="LocalStorage">
+                    <param id="0" name="Key">&quot;levelOKabstractPlatformer_key&quot;</param>
+                    <param id="1" name="Value">levelOK</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="968239358178505">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="785635015525693" type="System">
+                    <param id="0" name="Variable">Playing</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">levelMAX</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="782521705494612" type="System">
+                    <param id="0" name="Variable">Playing</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Set text" sid="378875384298563" type="FontFases">
+                    <param id="0" name="Text">Playing</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="637588740244148">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="203270117663669" type="System">
+                    <param id="0" name="Variable">Playing</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="932390148745438" type="System">
+                    <param id="0" name="Variable">Playing</param>
+                    <param id="1" name="Value">levelMAX</param>
+                </action>
+                <action id="0" name="Set text" sid="481985667076140" type="FontFases">
+                    <param id="0" name="Text">Playing</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="995590344901000">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="927541350704918" type="System">
+                    <param id="0" name="Variable">PlayerSel</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="623181308041800" type="System">
+                    <param id="0" name="Variable">PlayerSel</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="642983053398797" type="PlayerSprites">
+                    <param id="0" name="Animation">&quot;walk&quot; &amp; PlayerSel</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="860733185827878">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="542267932641145" type="System">
+                    <param id="0" name="Variable">PlayerSel</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="179574387591809" type="System">
+                    <param id="0" name="Variable">PlayerSel</param>
+                    <param id="1" name="Value">4</param>
+                </action>
+                <action id="4" name="Set animation" sid="777081125747914" type="PlayerSprites">
+                    <param id="0" name="Animation">&quot;walk&quot; &amp; PlayerSel</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="602652759606935">
+            <conditions>
+                <condition id="3" name="On touched object" sid="441088432442299" type="Touch">
+                    <param id="0" name="Object">Up</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="207226867316150" type="Keyboard">
+                    <param id="0" name="Key">38</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="337673864993918" type="Keyboard">
+                    <param id="0" name="Key">87</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="424002466919143" type="Up">
+                    <param id="0" name="Animation">&quot;biru&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-10" name="Add to" sid="191840054867214" type="System">
+                    <param id="0" name="Variable">Playing</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Set text" sid="559566039128055" type="FontFases">
+                    <param id="0" name="Text">Playing</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="333326940717770">
+            <conditions>
+                <condition id="3" name="On touched object" sid="866093023684676" type="Touch">
+                    <param id="0" name="Object">Down</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="727191587621376" type="Keyboard">
+                    <param id="0" name="Key">40</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="290661632050987" type="Keyboard">
+                    <param id="0" name="Key">83</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="169186533779114" type="System">
+                    <param id="0" name="Variable">Playing</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Set text" sid="903237414942261" type="FontFases">
+                    <param id="0" name="Text">Playing</param>
+                </action>
+                <action id="4" name="Set animation" sid="717682805345523" type="Down">
+                    <param id="0" name="Animation">&quot;kuning&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="384648540098680">
+            <conditions>
+                <condition id="3" name="On touched object" sid="368112686651070" type="Touch">
+                    <param id="0" name="Object">SprtRight</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="839141195613109" type="Keyboard">
+                    <param id="0" name="Key">39</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="578037766416059" type="Keyboard">
+                    <param id="0" name="Key">68</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="364505970373363" type="System">
+                    <param id="0" name="Variable">PlayerSel</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="260432856768291" type="PlayerSprites">
+                    <param id="0" name="Animation">&quot;walk&quot; &amp; PlayerSel</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="376899862977399" type="SprtRight">
+                    <param id="0" name="Animation">&quot;merah&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="937819454080129">
+            <conditions>
+                <condition id="3" name="On touched object" sid="917197643313352" type="Touch">
+                    <param id="0" name="Object">SprtLeft</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="753845262962840" type="Keyboard">
+                    <param id="0" name="Key">37</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="330453187339309" type="Keyboard">
+                    <param id="0" name="Key">65</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="450769680812538" type="System">
+                    <param id="0" name="Variable">PlayerSel</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="906983325445941" type="PlayerSprites">
+                    <param id="0" name="Animation">&quot;walk&quot; &amp; PlayerSel</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="371742714619259" type="SprtLeft">
+                    <param id="0" name="Animation">&quot;hijau&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="860813717129322">
+            <conditions>
+                <condition id="3" name="On touched object" sid="342033917281863" type="Touch">
+                    <param id="0" name="Object">play</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="338353724524273" type="System">
+                    <param id="0" name="Variable">Playing</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">levelOK</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="816475877651595" type="play">
+                    <param id="0" name="Animation">&quot;play&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-25" name="Go to layout (by name)" sid="842258223559527" type="System">
+                    <param id="0" name="Layout">&quot;Level&quot; &amp; Playing</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="801475510472208">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="824654524980564" type="Keyboard">
+                    <param id="0" name="Key">13</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="393344724615792" type="System">
+                    <param id="0" name="Variable">Playing</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">levelOK</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-25" name="Go to layout (by name)" sid="228773418114904" type="System">
+                    <param id="0" name="Layout">&quot;Level&quot; &amp; Playing</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="178272766358279">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="787153818390175" type="System">
+                    <param id="0" name="Variable">Playing</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">levelOK</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="443995576141380" type="Locked">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="405631902800433">
+            <conditions>
+                <condition id="-22" name="Else" sid="341610645159906" type="System" />
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="662377733773908" type="Locked">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="982745192612715">
+            <conditions>
+                <condition id="3" name="On touched object" sid="512772397126857" type="Touch">
+                    <param id="0" name="Object">kelua</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="618593242682980" type="kelua">
+                    <param id="0" name="Animation">&quot;keluar&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-16" name="Wait" sid="466540292819502" type="System">
+                    <param id="0" name="Seconds">0.5</param>
+                </action>
+                <action id="1" name="Close" sid="327506944429276" type="Browser" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
